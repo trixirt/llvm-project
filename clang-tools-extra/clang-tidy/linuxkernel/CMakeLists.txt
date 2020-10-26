@@ -6,6 +6,7 @@ set(LLVM_LINK_COMPONENTS
 add_clang_library(clangTidyLinuxKernelModule
   LinuxKernelTidyModule.cpp
   MustCheckErrsCheck.cpp
+  SwitchSemiCheck.cpp
 
   LINK_LIBS
   clangTidy

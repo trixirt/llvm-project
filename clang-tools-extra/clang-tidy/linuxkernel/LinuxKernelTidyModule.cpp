@@ -10,6 +10,7 @@
 #include "../ClangTidyModule.h"
 #include "../ClangTidyModuleRegistry.h"
 #include "MustCheckErrsCheck.h"
+#include "SwitchSemiCheck.h"
 
 namespace clang {
 namespace tidy {
@@ -21,6 +22,7 @@ public:
   void addCheckFactories(ClangTidyCheckFactories &CheckFactories) override {
     CheckFactories.registerCheck<MustCheckErrsCheck>(
         "linuxkernel-must-check-errs");
+    CheckFactories.registerCheck<SwitchSemiCheck>("linuxkernel-switch-semi");
   }
 };
 // Register the LinuxKernelTidyModule using this statically initialized
