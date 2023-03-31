@@ -12,6 +12,8 @@ declare <3 x i5> @llvm.cttz.v3i5(<3 x i5>, i1)
 declare i32 @llvm.ctpop.i32(i32)
 declare <3 x i7> @llvm.ctpop.v3i7(<3 x i7>)
 
+declare i32 @llvm.usub.sat.i32(i32, i32)
+
 define i32 @ctlz_sel_const_true_false(i1 %b) {
 ; CHECK-LABEL: @ctlz_sel_const_true_false(
 ; CHECK-NEXT:    [[C:%.*]] = select i1 [[B:%.*]], i32 29, i32 0
