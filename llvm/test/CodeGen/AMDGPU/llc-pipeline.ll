@@ -35,8 +35,6 @@
 ; GCN-O0-NEXT:        Dominator Tree Construction
 ; GCN-O0-NEXT:    Lower ctors and dtors for AMDGPU
 ; GCN-O0-NEXT:    AMDGPU Lower Kernel Calls
-; GCN-O0-NEXT:    FunctionPass Manager
-; GCN-O0-NEXT:      Early propagate attributes from kernels to functions
 ; GCN-O0-NEXT:    AMDGPU Lower Intrinsics
 ; GCN-O0-NEXT:    AMDGPU Inline All Functions
 ; GCN-O0-NEXT:    CallGraph Construction
@@ -186,8 +184,6 @@
 ; GCN-O1-NEXT:        Dominator Tree Construction
 ; GCN-O1-NEXT:    Lower ctors and dtors for AMDGPU
 ; GCN-O1-NEXT:    AMDGPU Lower Kernel Calls
-; GCN-O1-NEXT:    FunctionPass Manager
-; GCN-O1-NEXT:      Early propagate attributes from kernels to functions
 ; GCN-O1-NEXT:    AMDGPU Lower Intrinsics
 ; GCN-O1-NEXT:    AMDGPU Inline All Functions
 ; GCN-O1-NEXT:    CallGraph Construction
@@ -459,8 +455,6 @@
 ; GCN-O1-OPTS-NEXT:        Dominator Tree Construction
 ; GCN-O1-OPTS-NEXT:    Lower ctors and dtors for AMDGPU
 ; GCN-O1-OPTS-NEXT:    AMDGPU Lower Kernel Calls
-; GCN-O1-OPTS-NEXT:    FunctionPass Manager
-; GCN-O1-OPTS-NEXT:      Early propagate attributes from kernels to functions
 ; GCN-O1-OPTS-NEXT:    AMDGPU Lower Intrinsics
 ; GCN-O1-OPTS-NEXT:    AMDGPU Inline All Functions
 ; GCN-O1-OPTS-NEXT:    CallGraph Construction
@@ -764,8 +758,6 @@
 ; GCN-O2-NEXT:        Dominator Tree Construction
 ; GCN-O2-NEXT:    Lower ctors and dtors for AMDGPU
 ; GCN-O2-NEXT:    AMDGPU Lower Kernel Calls
-; GCN-O2-NEXT:    FunctionPass Manager
-; GCN-O2-NEXT:      Early propagate attributes from kernels to functions
 ; GCN-O2-NEXT:    AMDGPU Lower Intrinsics
 ; GCN-O2-NEXT:    AMDGPU Inline All Functions
 ; GCN-O2-NEXT:    CallGraph Construction
@@ -1072,8 +1064,6 @@
 ; GCN-O3-NEXT:        Dominator Tree Construction
 ; GCN-O3-NEXT:    Lower ctors and dtors for AMDGPU
 ; GCN-O3-NEXT:    AMDGPU Lower Kernel Calls
-; GCN-O3-NEXT:    FunctionPass Manager
-; GCN-O3-NEXT:      Early propagate attributes from kernels to functions
 ; GCN-O3-NEXT:    AMDGPU Lower Intrinsics
 ; GCN-O3-NEXT:    AMDGPU Inline All Functions
 ; GCN-O3-NEXT:    CallGraph Construction
