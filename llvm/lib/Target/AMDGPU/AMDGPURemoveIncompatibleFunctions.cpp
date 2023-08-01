@@ -129,6 +129,14 @@ struct DiagnosticInfoRemovingIncompatibleFunction
   std::string Msg;
 };
 
+void reportFunctionRemoved(Function &F, unsigned Feature) {
+  LLVMContext &Ctx = F.getContext();
+  DiagnosticInfoRemovingIncompatibleFunction DiagInfo(
+      F, "+" + getFeatureName(Feature) +
+              " is not supported on the current target");
+  Ctx.diagnose(DiagInfo);
+  return;
+}
 } // end anonymous namespace
 
 bool AMDGPURemoveIncompatibleFunctions::checkFunction(Function &F) {
@@ -150,8 +158,6 @@ bool AMDGPURemoveIncompatibleFunctions::checkFunction(Function &F) {
   if (!GPUInfo)
     return false;
 
-  LLVMContext &Ctx = F.getContext();
-
   // Get all the features implied by the current GPU, and recursively expand
   // the features that imply other features.
   //
@@ -167,14 +173,20 @@ bool AMDGPURemoveIncompatibleFunctions::checkFunction(Function &F) {
   // GPU's feature set. We only check a predetermined set of features.
   for (unsigned Feature : FeaturesToCheck) {
     if (ST->hasFeature(Feature) && !GPUFeatureBits.test(Feature)) {
-      DiagnosticInfoRemovingIncompatibleFunction DiagInfo(
-          F, "+" + getFeatureName(Feature) +
-                 " is not supported on the current target");
-      Ctx.diagnose(DiagInfo);
+      reportFunctionRemoved(F, Feature);
       return true;
     }
   }
 
+  // Delete FeatureWavefrontSize32 functions for
+  // gfx9 and below targets that don't support the mode.
+  // gfx10+ is implied to support both wave32 and 64 features.
+  // They are not in the feature set. So, we need a separate check
+  if (ST->getGeneration() < AMDGPUSubtarget::GFX10 &&
+      ST->hasFeature(AMDGPU::FeatureWavefrontSize32)) {
+    reportFunctionRemoved(F, AMDGPU::FeatureWavefrontSize32);
+    return true;
+  }
   return false;
 }
 
